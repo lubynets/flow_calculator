@@ -1,10 +1,11 @@
 void resolutor_34sub()
 {
-  std::string fileName = "/home/user/cbmdir/working/qna/resolutions/psd.dcmqgsm.12agev.root";
+  std::string fileName = "/home/user/cbmdir/working/qna/resolutions/OlegSelection_sumw/psd.dcmqgsm.12agev.root";
   
   TFile* fileIn = TFile::Open(fileName.c_str());
   
-  std::vector<std::string> steps{"PLAIN", "RECENTERED", "TWIST", "RESCALED"};
+//   std::vector<std::string> steps{"PLAIN", "RECENTERED", "TWIST", "RESCALED"};
+  std::vector<std::string> steps{"RECENTERED"};
   std::vector<std::string> components{"x1x1", "y1y1"};
   
   TFile* fileOut = TFile::Open("fileOut.root", "recreate");
