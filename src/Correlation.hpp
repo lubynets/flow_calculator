@@ -53,7 +53,6 @@ class Correlation : public TObject {
   friend Correlation operator+( const Correlation&, const Correlation& );
   friend Correlation operator-( const Correlation&, const Correlation& );
   friend Correlation operator*( const Correlation&, const Correlation& );
-  friend Correlation operator*( const Correlation&, const Correlation& );
   friend Correlation operator*( const Correlation&, const std::vector<double>& );
   friend Correlation operator*( const Correlation&, double );
   friend Correlation operator/( const Correlation&, const Correlation& );
