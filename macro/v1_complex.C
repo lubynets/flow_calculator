@@ -1,15 +1,14 @@
 void v1_complex()
 {
-//   std::string fileName = "/home/user/cbmdir/working/qna/correlations/cl.dcmqgsm.12agev.defcuts.3122.set2.sgnl_1.root";
-//   std::string fileName = "/home/user/cbmdir/working/qna/correlations/aXmass/cl.dcmqgsm.apr20.recpid.defaultcuts.3312.set4.root";
-  std::string fileName = "/home/user/cbmdir/working/qna/correlations/aXmass/cl.dcmqgsm.3.3agev.apr20.recpid.lightcuts1.3122.set4.root";
-  
+//   std::string fileName = "/home/oleksii/cbmdir/working/qna/aXmass/cl.dcmqgsm.apr20.recpid.lightcuts1.3122.set4.sgnl.root";
+  std::string fileName = "/home/oleksii/cbmdir/working/qna/aXmass/cl.dcmqgsm.apr20.recpid.lightcuts1.310.set4.root";
+
   TFile* fileIn = TFile::Open(fileName.c_str());
   
-  std::vector<std::string> components{"x1x1", "y1y1"};
+  std::vector<std::string> components{"x1x1", "y1y1", "x1y1", "y1x1"};
   std::vector<std::string> subevents{"psd1_RECENTERED", "psd2_RECENTERED", "psd3_RECENTERED"};
   
-  TFile* fileOut = TFile::Open("fileOut.root", "recreate");
+  TFile* fileOut = TFile::Open("v1andR1.root", "recreate");
   fileOut->cd();
   fileOut->mkdir("v1/usimPsi");
   fileOut->mkdir("v1/uPsi");
