@@ -1,5 +1,8 @@
 void v1_stf() {
-  std::string fileName = "/home/oleksii/cbmdir/working/qna/simtracksflow/urqmd/cl.stf.urqmd.root";
+//   std::string evegen = "dcmqgsm";
+  std::string evegen = "urqmd";
+
+  std::string fileName = "/home/oleksii/cbmdir/working/qna/simtracksflow/" + evegen + "/cl.stf." + evegen + ".root";
   
   TFile* fileIn = TFile::Open(fileName.c_str());
   
@@ -10,13 +13,14 @@ void v1_stf() {
   std::vector<std::string> subevents{"psd1_RECENTERED",
                                      "psd2_RECENTERED",
                                      "psd3_RECENTERED",
-                                     "psdall_RECENTERED",
+//                                      "psdall_RECENTERED",
                                      "spec1_prim_PLAIN",
                                      "spec2_prim_PLAIN",
                                      "spec3_prim_PLAIN",
-                                     "spec1_all_PLAIN",
-                                     "spec2_all_PLAIN",
-                                     "spec3_all_PLAIN"};
+//                                      "spec1_all_PLAIN",
+//                                      "spec2_all_PLAIN",
+//                                      "spec3_all_PLAIN"
+                                    };
   
   TFile* fileOut = TFile::Open("v1andR1.root", "recreate");
   fileOut->cd();
@@ -62,6 +66,12 @@ void v1_stf() {
       auto uQ_R1 = uQ / R1.at(i) * 2.;
       fileOut->cd(("v1/" + pa + "/uQ_R1").c_str());
       uQ_R1.Save("v1.uQ_R1." + subevents.at(i));
+      auto uQ_R1_mirrored = Mirror(uQ_R1, "SimParticles_rapidity");
+//       uQ_R1_mirrored.Save("v1.uQ_R1_mirrored." + subevents.at(i));
+      auto uQ_R1_even = (uQ_R1 - uQ_R1_mirrored) / 2.;
+      uQ_R1_even.Save("v1.uQ_R1_even." + subevents.at(i));
+      auto uQ_R1_odd = (uQ_R1 + uQ_R1_mirrored) / 2.;
+      uQ_R1_odd.Save("v1.uQ_R1_odd." + subevents.at(i));
     }
   }
 

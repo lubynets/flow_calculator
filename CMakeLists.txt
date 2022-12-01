@@ -44,6 +44,7 @@ set(SOURCES
 set(HEADERS
         src/Correlation.hpp
         src/Functions.hpp
+        src/QnToolsHelper.hpp
         )
 
 set(PCM_FILE_NAME libCalculator)

@@ -4,6 +4,8 @@
 
 #include "Correlation.hpp"
 
+#include "QnToolsHelper.hpp"
+
 ClassImp(Correlation);
 
 Correlation::Correlation(TFile* file,
@@ -104,6 +106,14 @@ Correlation MatrixMultiply( const Correlation& first, const Correlation& second 
       idx2++;
     }
     idx1++;
+  }
+  return result;
+}
+
+Correlation Mirror( const Correlation& first, std::string axis_name ) {
+  auto result = Correlation(first);
+  for( size_t i=0; i<first.components_.size(); i++ ) {
+    Reflect(&(result.components_.at(i)), axis_name);
   }
   return result;
 }

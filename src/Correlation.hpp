@@ -59,6 +59,7 @@ class Correlation : public TObject {
   friend Correlation operator/( const Correlation&, double );
   friend Correlation Sqrt( const Correlation& );
   friend Correlation MatrixMultiply( const Correlation&, const Correlation& );
+  friend Correlation Mirror( const Correlation&, std::string axis_name);
 protected:
   std::vector<Qn::DataContainerStatCalculate> components_;
   std::string title_;
