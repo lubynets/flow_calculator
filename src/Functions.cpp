@@ -6,8 +6,8 @@
 
 ClassImp(Functions);
 
-Correlation Functions::Resolution3S(const Correlation& first, const Correlation& second, const Correlation& third) {
-  auto result = Sqrt(first*second/third);
+Correlation Functions::Resolution3S(const Correlation& numerator1, const Correlation& numerator2, const Correlation& denominator) {
+  auto result = Sqrt(numerator1*numerator2/denominator);
   return result;
 }
 std::vector<Correlation> Functions::VectorResolutions3S(TFile* file,
@@ -35,5 +35,16 @@ std::vector<Correlation> Functions::VectorResolutions3S(TFile* file,
       res_vector.emplace_back(res_qa);
     }
   }
+  return res_vector;
+}
+
+std::vector<Correlation> Functions::VectorResolutions3S(const Correlation& first,
+                                                               const Correlation& second,
+                                                               const Correlation& third) {
+  std::vector<Correlation> res_vector;
+  res_vector.emplace_back(Resolution3S(second, third, first));
+  res_vector.emplace_back(Resolution3S(third, first, second));
+  res_vector.emplace_back(Resolution3S(first, second, third));
+
   return res_vector;
 }
