@@ -14,7 +14,9 @@ public:
   Functions() = default;
   ~Functions() override = default;
   static Correlation Resolution3S(const Correlation&, const Correlation&, const Correlation&);
+  static Correlation Resolution4S(const Correlation&, const Correlation&, const Correlation&, const Correlation&);
   static std::vector<Correlation> VectorResolutions3S(const Correlation&, const Correlation&, const Correlation&);
+  static std::vector<Correlation> VectorResolutions4S(const Correlation&, const Correlation&, const Correlation&, const Correlation&);
   static std::vector<Correlation> VectorResolutions3S(TFile* file,
                                                       const std::string& directory,
                                                       const std::string& ep_vector,

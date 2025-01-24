@@ -10,6 +10,12 @@ Correlation Functions::Resolution3S(const Correlation& numerator1, const Correla
   auto result = Sqrt(numerator1*numerator2/denominator);
   return result;
 }
+
+Correlation Functions::Resolution4S(const Correlation& first, const Correlation& second, const Correlation& third, const Correlation& fourth) {
+  Correlation R4 = Resolution3S(first, third, fourth);
+  return second/R4 * (-1.);
+}
+
 std::vector<Correlation> Functions::VectorResolutions3S(TFile* file,
                                                     const std::string& directory,
                                                     const std::string& ep_vector,
@@ -39,12 +45,24 @@ std::vector<Correlation> Functions::VectorResolutions3S(TFile* file,
 }
 
 std::vector<Correlation> Functions::VectorResolutions3S(const Correlation& first,
-                                                               const Correlation& second,
-                                                               const Correlation& third) {
+                                                        const Correlation& second,
+                                                        const Correlation& third) {
   std::vector<Correlation> res_vector;
   res_vector.emplace_back(Resolution3S(second, third, first));
   res_vector.emplace_back(Resolution3S(third, first, second));
   res_vector.emplace_back(Resolution3S(first, second, third));
+
+  return res_vector;
+}
+
+std::vector<Correlation> Functions::VectorResolutions4S(const Correlation& first,
+                                                        const Correlation& second,
+                                                        const Correlation& third,
+                                                        const Correlation& fourth) {
+  std::vector<Correlation> res_vector;
+  res_vector.emplace_back(Resolution3S(fourth, first, third));
+  res_vector.emplace_back(Resolution4S(first, second, third, fourth));
+  res_vector.emplace_back(Resolution3S(fourth, third, first));
 
   return res_vector;
 }
